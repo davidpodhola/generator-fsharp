@@ -20,7 +20,7 @@
     <Optimize>false</Optimize>
     <Tailcalls>false</Tailcalls>
     <OutputPath>.\bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DEMO</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <OtherFlags>--warnon:1182</OtherFlags>
   </PropertyGroup>
@@ -59,10 +59,12 @@
   -->
   <Import Project="..\..\.paket\paket.targets" />
   <ItemGroup>
+    <Compile Include="DomainTypes.fs" />
     <Compile Include="Library.fs" />
     <None Include="Script.fsx" />
     <None Include="paket.references" />
     <Content Include="App.config" />
+    <None Include="DatabaseTables.xlsm" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
