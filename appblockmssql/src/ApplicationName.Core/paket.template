@@ -1,0 +1,25 @@
+type project
+title
+    ApplicationName.Core
+owners
+    XXX
+authors 
+    XXX
+projectUrl
+    http://github.com/XXX/ApplicationName.Core
+iconUrl
+    https://raw.githubusercontent.com/XXX/ApplicationName.Core/master/docs/files/img/logo.png
+licenseUrl
+    http://github.com/XXX/ApplicationName.Core/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+copyright
+    Copyright 2015
+tags
+    XXX
+summary
+    XXX
+description
+    XXX
+
+
