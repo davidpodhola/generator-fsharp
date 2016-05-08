@@ -9,6 +9,7 @@ NUGET
   specs:
     FAKE (4.25.5)
     FSharp.Compiler.Service (2.0.0.6)
+    FSharp.Data.SqlClient (1.8.1)
     FSharp.Formatting (2.14.2)
       FSharp.Compiler.Service (2.0.0.6)
       FSharpVSPowerTools.Core (>= 2.3 < 2.4)
