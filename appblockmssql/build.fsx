@@ -32,7 +32,7 @@ let project = "ApplicationName.Core"
 
 
 // File system information
-let solutionFile  = "ApplicationName.Core.sln"
+let solutionFile  = "ApplicationName.sln"
 
 // Pattern specifying assemblies to be tested using NUnit
 let testAssemblies = "tests/**/bin/Release/*Tests*.dll"
@@ -105,7 +105,11 @@ Target "Build" (fun _ ->
 #if MONO
     |> MSBuildReleaseExt "" [ ("DefineConstants","MONO") ] "Rebuild"
 #else
-    |> MSBuildRelease "" "Rebuild"
+#if DEMO
+    |> MSBuildReleaseExt "" [ ("DefineConstants","DEMO") ] "Rebuild" 
+#else
+    |> MSBuildRelease "" "Rebuild" 
+#endif    
 #endif
     |> ignore
 )

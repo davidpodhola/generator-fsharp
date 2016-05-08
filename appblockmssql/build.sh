@@ -12,8 +12,10 @@ FAKE_EXE=packages/build/FAKE/tools/FAKE.exe
 FSIARGS=""
 OS=${OS:-"unknown"}
 if [[ "$OS" != "Windows_NT" ]]
+  FSIARGS="--fsiargs -d:DEMO"
 then
-  FSIARGS="--fsiargs -d:MONO"
+  #FSIARGS="--fsiargs -d:MONO"
+  FSIARGS="--fsiargs -d:MONO;DEMO"
 fi
 
 function run() {

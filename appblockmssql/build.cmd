@@ -15,4 +15,5 @@ IF NOT EXIST build.fsx (
   .paket\paket.exe update
   packages\build\FAKE\tools\FAKE.exe init.fsx
 )
-packages\build\FAKE\tools\FAKE.exe build.fsx %*
+rem packages\build\FAKE\tools\FAKE.exe build.fsx %*
+packages\build\FAKE\tools\FAKE.exe --fsiargs -d:DEMO build.fsx %*
