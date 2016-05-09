@@ -13,7 +13,7 @@
         { "name": "WebSharper.UI.Next Suave", "value": "websharpersuave" },
         { "name": "Azure Service Fabric Host", "value": "servicefabrichost" },
         { "name": "Azure Service Fabric Suave Stateless Service", "value": "servicefabricsuavestateless" },
-        { "name": "Application Block using Suave and Microsoft SQL Server", "value": "appblockmssql" }
+        { "name": "Application Block with Microsoft SQL Server", "value": "appblockmssql" }
     ],
     "Files": [
         {"name": "F# Module", "value": "fs", "extension": "fs"},
