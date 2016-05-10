@@ -1,0 +1,7 @@
+FSharp.Core
+
+group Build
+FSharp.Data.SqlClient
+Suave
+Newtonsoft.Json
+Orleankka.FSharp
