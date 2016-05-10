@@ -29,7 +29,12 @@ module Program =
   
     printfn "Running demo. Booting cluster might take some time ...\n"
 
-    let assemblies:Assembly [] = [| Assembly.GetExecutingAssembly();(typeof<HelloMessage>).Assembly |]
+    let assemblies:Assembly [] = 
+      [| Assembly.GetExecutingAssembly();
+#if DEMO
+      (typeof<HelloMessage>).Assembly 
+#endif
+      |]
 
     // configure actor system
     use system = ActorSystem.Configure()
@@ -37,7 +42,9 @@ module Program =
                             .Register(assemblies)
                             .Done()
   
+#if DEMO
     let testActor = system.ActorOf<Actors.Greeter>("http_test")
+#endif
     printfn "Actor path %A" testActor.Path
 
     // configure actor routing
