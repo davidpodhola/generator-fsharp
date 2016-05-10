@@ -3,12 +3,18 @@
 module Program =
 
   open System
+  open System.Net
 
   open Suave                 
   open Suave.Web
   open Suave.Http
+  open Suave.Successful
+  open Suave.RequestErrors
   open Suave.Utils
-
+  open Suave.Filters
+  open Suave.Operators
+  open Suave.Files
+  
   open Orleankka
   open Orleankka.Http
   open Orleankka.Playground
@@ -59,7 +65,7 @@ module Program =
     }  
 
     // configure Suave routing
-    let app = POST >>= hasContentType >>= pathScan "/api/%s" (fun path -> request (fun req ctx -> sendMsg path ctx))  
+    let app = POST >=> hasContentType >=> pathScan "/api/%s" (fun path -> request (fun req ctx -> sendMsg path ctx))  
 
     printfn "Finished booting cluster...\n"
 
