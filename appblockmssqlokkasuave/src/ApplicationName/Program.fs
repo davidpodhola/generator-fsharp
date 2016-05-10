@@ -76,5 +76,5 @@ module Program =
 
     printfn "Finished booting cluster...\n"
 
-    startWebServer defaultConfig app
+    startWebServer { defaultConfig with bindings = [ HttpBinding.mkSimple Protocol.HTTP "127.0.0.1" 8080 ]  } app
     0 
