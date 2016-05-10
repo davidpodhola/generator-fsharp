@@ -13,11 +13,9 @@ module Actors=
 
       override this.Receive message = task {
           match message with
-          | Greet who -> 
-              printfn "Hello %A %i" who (Library.hello (who.GetHashCode()))
-              return response()
+          | Greet who ->               
+              return response(sprintf "Hello %s %s %i" who.FirstName who.LastName (Library.hello (who.GetHashCode())))
           | Hi -> 
-              printfn "Hello from F#!"
-              return response()
+              return response("Hello from F#!")
       }
 #endif
