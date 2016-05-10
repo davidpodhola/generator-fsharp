@@ -1,12 +1,18 @@
-﻿module DatabaseTypes
-open FSharp.Data
+﻿namespace ApplicationName.Core
 
-[<Literal>]
-let connectionStringForCompileTime = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=" + __SOURCE_DIRECTORY__ + @"\tools\Database1.mdf;Integrated Security=True;Connect Timeout=10"
+module DatabaseTypes = 
+  open FSharp.Data
 
-#if DEMO
-type EmployeesQuery = SqlCommandProvider<"SELECT * FROM Employees", connectionStringForCompileTime>
+  [<Literal>]
+  let connectionStringForCompileTime = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=" + __SOURCE_DIRECTORY__ + @"\tools\Database1.mdf;Integrated Security=True;Connect Timeout=10"
 
-let allEmployees = (new EmployeesQuery("RuntimeConnectionString")).Execute()
-#endif
+  #if DEMO
+  type EmployeesQuery = SqlCommandProvider<"SELECT * FROM Employees", connectionStringForCompileTime>
+
+  let allEmployees = (new EmployeesQuery("RuntimeConnectionString")).Execute()
+
+  let convert ( employee: EmployeesQuery.Record ) : Person =
+    { FirstName = employee.FirstName; LastName = employee.LastName }
+
+  #endif
 

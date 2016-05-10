@@ -1,7 +1,5 @@
 ﻿namespace ApplicationName.Core
 
-module DomainTypes =
-
 #if DEMO
   [<CLIMutable>]
   type Person = {

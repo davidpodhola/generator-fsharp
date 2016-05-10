@@ -4,13 +4,16 @@ $new_db_name = "Database1"
 $detach_db_sql = @"
 use master;
 GO
+ALTER DATABASE $new_db_name SET SINGLE_USER
+GO
 EXEC sp_detach_db @dbname = N'$new_db_name';
+GO
+DROP DATABASE $new_db_name
 GO
 "@
 
 $detach_db_sql | Out-File "detachdb.sql"
 sqlcmd -S "(localdb)\MSSQLLocalDB" -i detachdb.sql
-Remove-Item .
 
 Remove-Item "$new_db_name.mdf"
 Remove-Item "$new_db_name.ldf"
@@ -36,10 +39,8 @@ $create_db_sql = @"
 
 $create_db_sql | Out-File "createdb.sql"
 sqlcmd -S "(localdb)\MSSQLLocalDB" -i createdb.sql
-Remove-Item .
 
 sqlcmd -S "(localdb)\MSSQLLocalDB" -i ..\schema.sql
 
 $detach_db_sql | Out-File "detachdb.sql"
 sqlcmd -S "(localdb)\MSSQLLocalDB" -i detachdb.sql
-Remove-Item .

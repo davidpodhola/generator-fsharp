@@ -57,10 +57,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Target Name="BeforeBuild">
-    <Message Text="Building out SQL Database: Database1.mdf" Importance="High" />
-    <Exec Command="generateSchemaSQL.bat" WorkingDirectory="tools" />
-  </Target>  
   <Import Project="..\..\.paket\paket.targets" />
   <ItemGroup>
     <Compile Include="DomainTypes.fs" />
