@@ -6,4 +6,8 @@
       FirstName:string
       LastName:string
   }
+
+  type HelloMessage = 
+    | Greet of Person
+    | Hi
 #endif
