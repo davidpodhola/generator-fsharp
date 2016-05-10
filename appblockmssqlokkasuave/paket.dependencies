@@ -9,6 +9,9 @@ group Build
   nuget FAKE
   nuget FSharp.Formatting
   nuget FSharp.Data.SqlClient
+  nuget Suave
+  nuget Newtonsoft.Json
+  nuget Orleankka.FSharp
 
   github fsharp/FAKE modules/Octokit/Octokit.fsx
 
