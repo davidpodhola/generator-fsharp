@@ -23,6 +23,7 @@ module Program =
   open Newtonsoft.Json
 
   open ApplicationName.Core
+  open Suave.Writers
 
   [<EntryPoint>]
   let main argv = 
@@ -60,6 +61,10 @@ module Program =
       | _ -> return None
     }    
 
+    let setCORSHeaders = 
+        setHeader  "Access-Control-Allow-Origin" "*" 
+        >=>  setHeader "Access-Control-Allow-Headers" "content-type"
+
     // sends msg to actor 
     let sendMsg actorPath (ctx:HttpContext) = async {    
     
@@ -67,12 +72,25 @@ module Program =
         
       match router.Dispatch(actorPath, msgBody) with
       | Some t -> let! result = Async.AwaitTask t
-                  return! OK (result.ToString()) ctx
+                  return! ctx |> ( setCORSHeaders >=> OK (result.ToString()) )
       | None   -> return! BAD_REQUEST "actor has not found, or message has invalid format" ctx  
     }  
 
+    let allow_cors : WebPart =
+            choose [
+                OPTIONS >=> 
+                    fun context -> 
+                        context |> ( 
+                            setCORSHeaders
+                            >=>  OK "CORS approved")
+        ]
+
     // configure Suave routing
-    let app = POST >=> hasContentType >=> pathScan "/api/%s" (fun path -> request (fun req ctx -> sendMsg path ctx))  
+    let app = 
+      choose [
+        allow_cors
+        POST >=> hasContentType >=> pathScan "/api/%s" (fun path -> request (fun req ctx -> sendMsg path ctx))  
+      ]
 
     printfn "Finished booting cluster...\n"
 
