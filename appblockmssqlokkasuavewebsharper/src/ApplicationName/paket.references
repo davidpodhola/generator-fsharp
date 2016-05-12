@@ -1,4 +1,4 @@
-FSharp.Core
+FSharp.Core redirects: force
 
 group Build
 FSharp.Data.SqlClient
