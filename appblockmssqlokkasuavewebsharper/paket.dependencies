@@ -12,6 +12,13 @@ group Build
   nuget Suave
   nuget Newtonsoft.Json
   nuget Orleankka.FSharp
+  nuget Microsoft.Owin
+  nuget Mono.Cecil
+  nuget Owin
+  nuget WebSharper
+  nuget WebSharper.Owin
+  nuget WebSharper.Suave
+  nuget WebSharper.UI.Next
 
   github fsharp/FAKE modules/Octokit/Octokit.fsx
   github haf/YoLo YoLo.fs
